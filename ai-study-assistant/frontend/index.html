@@ -3,26 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Study Assistant</title>
+    <meta name="theme-color" content="#f5f9fc">
+    <title>MedScan — Prescription care dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="app-shell">
+        <aside class="sidebar" aria-label="Primary navigation">
+            <a class="brand" href="#dashboard" aria-label="MedScan home"><span class="brand-mark">+</span><span>med<span>scan</span></span></a>
+            <nav class="nav-list">
+                <a class="nav-item active" href="#dashboard"><span class="nav-icon">⌂</span>Dashboard</a>
+                <a class="nav-item" href="#prescriptions"><span class="nav-icon">▤</span>Prescriptions <b>4</b></a>
+                <a class="nav-item" href="#orders"><span class="nav-icon">◫</span>Medicine orders</a>
+                <a class="nav-item" href="#pharmacies"><span class="nav-icon">⌖</span>Nearby pharmacies</a>
+            </nav>
+            <div class="sidebar-bottom">
+                <a class="nav-item" href="#help"><span class="nav-icon">?</span>Help center</a>
+                <div class="profile-card"><div class="avatar">AM</div><div><strong>Alex Morgan</strong><span>Personal account</span></div><button class="more" aria-label="Profile options">•••</button></div>
+            </div>
+        </aside>
 
-    <div class="container">
-        <h1>AI Powered Study Assistant</h1>
+        <main class="main-content" id="dashboard">
+            <header class="topbar"><button class="mobile-menu" aria-label="Open navigation">☰</button><div class="breadcrumb"><span>Workspace</span><i>/</i><strong>Overview</strong></div><div class="top-actions"><button class="icon-button" aria-label="Notifications">♧<span class="notification-dot"></span></button><div class="top-avatar">AM</div></div></header>
+            <div class="page-wrap">
+                <section class="welcome-row"><div><p class="eyebrow">Wednesday, October 2, 2026</p><h1>Good morning, Alex <span>✦</span></h1><p class="subhead">Your health, organized and one scan away.</p></div><button class="primary-button" id="uploadButton"><span>＋</span> Upload prescription</button></section>
 
-        <input type="file" id="pdfFile">
-        <button onclick="uploadPDF()">Upload PDF</button>
+                <section class="stats-grid" aria-label="Health overview">
+                    <article class="stat-card"><div class="stat-icon teal">▤</div><div><span class="stat-label">Active prescriptions</span><strong>04</strong><small><em>+1</em> this month</small></div></article>
+                    <article class="stat-card"><div class="stat-icon purple">◫</div><div><span class="stat-label">Pending orders</span><strong>02</strong><small>Arriving soon</small></div></article>
+                    <article class="stat-card"><div class="stat-icon amber">⌖</div><div><span class="stat-label">Saved pharmacies</span><strong>06</strong><small>Within 5 miles</small></div></article>
+                </section>
 
-        <textarea id="question" placeholder="Ask a question..."></textarea>
+                <div class="section-heading"><div><h2>Recent prescriptions</h2><p>AI-scanned documents from your health record</p></div><a href="#prescriptions">View all <span>→</span></a></div>
+                <section class="prescription-grid" id="prescriptions">
+                    <article class="prescription-card featured"><div class="card-top"><span class="document-icon">▤</span><span class="status-pill verified"><i></i>Verified</span></div><h3>Amoxicillin</h3><p>500mg · Take 1 capsule twice daily</p><div class="card-footer"><span>Dr. Sarah Chen</span><time>Sep 28, 2026</time></div></article>
+                    <article class="prescription-card"><div class="card-top"><span class="document-icon">▤</span><span class="status-pill verified"><i></i>Verified</span></div><h3>Lisinopril</h3><p>10mg · Take 1 tablet every morning</p><div class="card-footer"><span>Dr. James Wilson</span><time>Sep 15, 2026</time></div></article>
+                    <article class="prescription-card"><div class="card-top"><span class="document-icon">▤</span><span class="status-pill review"><i></i>In review</span></div><h3>Vitamin D3</h3><p>2000 IU · Take 1 softgel daily</p><div class="card-footer"><span>Dr. Sarah Chen</span><time>Sep 03, 2026</time></div></article>
+                </section>
 
-        <button onclick="askQuestion()">Ask AI</button>
-
-        <button onclick="getSummary()">Generate Summary</button>
-
-        <div id="output"></div>
+                <div class="content-grid">
+                    <section class="panel" id="orders"><div class="panel-heading"><div><h2>Medicine orders</h2><p>Track your latest pharmacy orders</p></div><button class="quiet-button">View all →</button></div><div class="order-item"><div class="order-symbol">✚</div><div class="order-info"><strong>Amoxicillin 500mg</strong><span>Walgreens · Order #MS-28491</span></div><div class="order-status"><span class="status-pill processing"><i></i>Processing</span><small>Est. Oct 4</small></div></div><div class="order-item"><div class="order-symbol blue">✚</div><div class="order-info"><strong>Lisinopril 10mg</strong><span>CVS Pharmacy · Order #MS-28377</span></div><div class="order-status"><span class="status-pill ready"><i></i>Ready for pickup</span><small>Today, 4:30 PM</small></div></div></section>
+                    <section class="panel pharmacy-panel" id="pharmacies"><div class="panel-heading"><div><h2>Nearby pharmacies</h2><p>Based on your saved locations</p></div><button class="quiet-button">See map →</button></div><div class="pharmacy-item"><div class="pharmacy-logo green">W</div><div class="pharmacy-info"><strong>Walgreens</strong><span>0.8 mi · Open until 10 PM</span></div><span class="distance">0.8 mi</span></div><div class="pharmacy-item"><div class="pharmacy-logo blue">C</div><div class="pharmacy-info"><strong>CVS Pharmacy</strong><span>1.2 mi · Open until 9 PM</span></div><span class="distance">1.2 mi</span></div><div class="pharmacy-item"><div class="pharmacy-logo orange">R</div><div class="pharmacy-info"><strong>Rite Aid</strong><span>2.4 mi · Open until 8 PM</span></div><span class="distance">2.4 mi</span></div></section>
+                </div>
+                <div class="trust-note"><span>✦</span><div><strong>AI-assisted, always human-reviewed</strong><p>MedScan helps you understand your prescriptions. Your care team has the final say.</p></div></div>
+            </div>
+        </main>
     </div>
-
+    <div class="upload-modal" id="uploadModal" aria-hidden="true"><div class="modal-card"><button class="close-modal" id="closeModal" aria-label="Close">×</button><div class="modal-icon">＋</div><h2>Scan a prescription</h2><p>Upload a clear photo or PDF. MedScan will extract the details for your review.</p><label class="drop-zone" for="pdfFile"><span>↑</span><strong>Choose a file to upload</strong><small>PDF, JPG or PNG · Max 10MB</small></label><input type="file" id="pdfFile" accept="application/pdf,image/jpeg,image/png"><button class="primary-button full" id="scanButton">Scan prescription</button><p class="modal-result" id="output" role="status"></p></div></div>
     <script src="script.js"></script>
 </body>
 </html>
